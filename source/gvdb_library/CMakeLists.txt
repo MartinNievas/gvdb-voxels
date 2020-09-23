@@ -9,7 +9,7 @@ cmake_minimum_required(VERSION 3.10) # Use Modern CMake
 
 project(gvdb LANGUAGES CUDA CXX C)
 
-cmake_policy(SET CMP0072 NEW) # Prefer GLVND by default when available (CMake 3.11+)
+# cmake_policy(SET CMP0072 NEW) # Prefer GLVND by default when available (CMake 3.11+)
 find_package(OpenGL REQUIRED)
 # Finds GLEW
 include("cmake/FindGLEW.cmake")

@@ -29,8 +29,8 @@
 
 #define CMAX(x,y,z)  (imax3(x,y,z)-imin3(x,y,z))
 
-#define RGBA2INT(r,g,b,a)	( (uint((a)*255.0f)<<24) | (uint((b)*255.0f)<<16) | (uint((g)*255.0f)<<8) | uint((r)*255.0f) )
-#define CLR2INT(c)			( (uint((c.w)*255.0f)<<24) | (uint((c.z)*255.0f)<<16) | (uint((c.y)*255.0f)<<8) | uint((c.x)*255.0f) )
+#define RGBA2INT(r,g,b,a)	( (uint((a)*uint(255.0f))<<24) | (uint((b)*uint(255.0f))<<16) | (uint((g)*uint(255.0f))<<8) | uint((r)*uint(255.0f)) )
+#define CLR2INT(c)			( (uint((c.w)*uint(255.0f))<<24) | (uint((c.z)*uint(255.0f))<<16) | (uint((c.y)*uint(255.0f))<<8) | uint((c.x)*uint(255.0f)) )
 #define INT2CLR(c)			( make_float4( float(c & 0xFF)/255.0f, float((c>>8) & 0xFF)/255.0f, float((c>>16) & 0xFF)/255.0f, float((c>>24) & 0xFF)/255.0f ))
 
 #define T_UCHAR			0		// channel types
@@ -205,7 +205,7 @@ __device__ void GetVoxelIndicesPacked(VDBInfo* gvdb, uint3& localIdx, uint3& atl
 	localIdx = threadIdx + atlasApron;
 
 	// What atlasIdx would be if atlas_apron were 0
-	const uint3 packedVox = blockIdx * blockDim + threadIdx;
+	const uint3 packedVox = blockIdx * make_uint3(blockDim.x, blockDim.y, blockDim.z) + threadIdx;
 
 	// Find the 3D index of the brick atlasIdx corresponds to
 	const int brickResNoApron = gvdb->brick_res - 2 * gvdb->atlas_apron;
@@ -232,7 +232,7 @@ __device__ void GetVoxelIndicesPacked(VDBInfo* gvdb, uint3& localIdx, uint3& atl
 // over atlas boundaries, so this covers the entire atlas. This used to be GVDB_VOX.
 #define GVDB_VOXUNPACKED \
 	uint3 localIdx = threadIdx + make_uint3(1, 1, 1); \
-	uint3 atlasIdx = blockIdx * blockDim + localIdx; \
+	uint3 atlasIdx = blockIdx * make_uint3(blockDim.x, blockDim.y, blockDim.z) + localIdx; \
 	if (atlasIdx.x >= atlasRes.x || atlasIdx.y >= atlasRes.y || atlasIdx.z >= atlasRes.z) return;
 
 extern "C" __global__ void gvdbOpGrow ( VDBInfo* gvdb, int3 atlasRes, uchar channel, float p1, float p2, float p3 )

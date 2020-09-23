@@ -24,10 +24,10 @@
 // - InsertPoints		- insert points into bricks
 // - SplatPoints		- splat points into bricks
 
-#define RGBA2INT(r,g,b,a)	(				uint((r)*255.0f) +		(uint((g)*255.0f)<<8) +			(uint((b)*255.0f)<<16) +		(uint((a)*255.0f)<<24) )
-#define CLR2INT(c)			(				uint((c.x)*255.0f) +	(uint((c.y)*255.0f)<<8)	+		(uint((c.z)*255.0f)<<16) +		(uint((c.w)*255.0f)<<24 ) )
+#define RGBA2INT(r,g,b,a)	(				uint((r)*uint(255.0f)) +		(uint((g)*uint(255.0f))<<8) +			(uint((b)*uint(255.0f))<<16) +		(uint((a)*uint(255.0f))<<24) )
+#define CLR2INT(c)			(				uint((c.x)*uint(255.0f)) +	(uint((c.y)*uint(255.0f))<<8)	+		(uint((c.z)*uint(255.0f))<<16) +		(uint((c.w)*uint(255.0f))<<24 ) )
 #define INT2CLR(c)			( make_float4( float(c & 0xFF)/255.0f,	float((c>>8) & 0xFF)/255.0f,	float((c>>16) & 0xFF)/255.0f,	float((c>>24) & 0xFF)/255.0f ))
-#define CLR2CHAR(c)			( make_uchar4( uchar(c.x*255.0f),	uchar(c.y*255.0f),	uchar(c.z*255.0f),	uchar(c.w*255.0f) ))
+#define CLR2CHAR(c)			( make_uchar4( uchar(uint(c.x)*uint(255.0f)),	uchar(uint(c.y)*uint(255.0f)),	uchar(uint(c.z)*uint(255.0f)),	uchar(uint(c.w)*uint(255.0f)) ))
 #define CHAR2CLR(c)			( make_float4( float(c.x)/255.0f,	float(c.y)/255.0f,	float(c.z)/255.0f,	float(c.w)/255.0f ))
 
 extern "C" __global__ void gvdbInsertPoints ( VDBInfo* gvdb, int num_pnts, char* ppos, int pos_off, int pos_stride, int* pnode, int* poff, int* gcnt, float3 ptrans )

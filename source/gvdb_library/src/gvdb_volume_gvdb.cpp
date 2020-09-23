@@ -1902,7 +1902,7 @@ bool VolumeGVDB::LoadBRK ( std::string fname )
 	mPool->AtlasCreate ( 0, T_FLOAT, bres, axiscnt, mApron, sizeof(AtlasNode), false, mbUseGLAtlas );
 	PERF_POP ();
 	
-	float vmin = FLT_MAX, vmax = -FLT_MAX;
+	float vmin = __FLT_MAX__, vmax = -__FLT_MAX__;
 
 	// Read all bricks
 	Vector3DF t;
