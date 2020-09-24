@@ -15,7 +15,7 @@ if (EXISTS "${SAMPLE_UTIL_DIR}/nv_gui.h" )
 	
 	if ( REQUIRE_OPENGL )
         # Add OpenGL to build
-		cmake_policy(SET CMP0072 NEW) # Prefer GLVND by default when available (CMake 3.11+)
+		# cmake_policy(SET CMP0072 NEW) # Prefer GLVND by default when available (CMake 3.11+)
 		find_package(OpenGL)		
 		message ( STATUS " Using OpenGL")
 	endif()
