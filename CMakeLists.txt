@@ -7,13 +7,14 @@ project(gvdb_all)
 
 # These samples depend only on the things included with GVDB.
 add_subdirectory("source/gvdb_library" "gvdb_library")
-add_subdirectory("source/g3DPrint" "g3DPrint")
-add_subdirectory("source/gDepthMap" "gDepthMap")
-add_subdirectory("source/gInteractiveGL" "gInteractiveGL")
-add_subdirectory("source/gRenderKernel" "gRenderKernel")
-add_subdirectory("source/gRenderToFile" "gRenderToFile")
-add_subdirectory("source/gResample" "gResample")
-add_subdirectory("source/gSprayDeposit" "gSprayDeposit")
+add_subdirectory("source/gSimpleTest" "gSimpleTest")
+# add_subdirectory("source/g3DPrint" "g3DPrint")
+# add_subdirectory("source/gDepthMap" "gDepthMap")
+# add_subdirectory("source/gInteractiveGL" "gInteractiveGL")
+# add_subdirectory("source/gRenderKernel" "gRenderKernel")
+# add_subdirectory("source/gRenderToFile" "gRenderToFile")
+# add_subdirectory("source/gResample" "gResample")
+# add_subdirectory("source/gSprayDeposit" "gSprayDeposit")
 
 # GVDB samples using OptiX, not built by default.
 # To enable these samples, set GVDB_BUILD_OPTIX_SAMPLES to ON before configuring CMake.
