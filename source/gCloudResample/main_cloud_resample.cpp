@@ -1,5 +1,3 @@
-
-
 // GVDB library
 #include "gvdb.h"			
 #include "gvdb_render.h"	// OpenGL rendering
@@ -236,7 +234,7 @@ bool Sample::init()
   // which creates or resizes an opengl 2D texture.
   createScreenQuadGL ( &m_gvdb_tex, w, h );
 
-  //start_guis(w, h);
+  start_guis(w, h);
 
   return true; 
 }
@@ -359,7 +357,7 @@ void Sample::mouse(NVPWindow::MouseButton button, NVPWindow::ButtonAction state,
 
 int sample_main ( int argc, const char** argv ) 
 {
-  return sample_obj.run ( "NVIDIA(R) GVDB Voxels - gResample", "resample", argc, argv, 1920, 1080, 5, 0 );
+  return sample_obj.run ( "NVIDIA(R) GVDB Voxels - gResample", "resample", argc, argv, 1920, 1080, 4, 5 );
 }
 
 void sample_print( int argc, char const *argv)
